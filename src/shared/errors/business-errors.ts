@@ -9,4 +9,5 @@ export enum BusinessError {
   PRECONDITION_FAILED,
   BAD_REQUEST,
   UNAUTHORIZED,
+  PARAMETER_REQUIRED,
 }

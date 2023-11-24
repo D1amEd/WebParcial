@@ -1,16 +1,20 @@
 /* eslint-disable prettier/prettier */
 /* archivo src/shared/testing-utils/typeorm-testing-config.ts*/
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AlbumEntity } from '../../album/album.entity/album.entity';
+import { PerformerEntity } from '../../performer/performer.entity/performer.entity';
+import { TrackEntity } from '../../track/track.entity/track.entity';
+
 /* Entities*/
 export const TypeOrmTestingConfig = () => [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: ':memory:',
-      dropSchema: true,
-      entities: [/* Entities */],
-      synchronize: true,
-      keepConnectionAlive: true
-    }),
-    TypeOrmModule.forFeature([/* Entities */]),
-   ];
-   /* archivo src/shared/testing-utils/typeorm-testing-config.ts*/
+  TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: ':memory:',
+    dropSchema: true,
+    entities: [AlbumEntity, PerformerEntity, TrackEntity],
+    synchronize: true,
+    keepConnectionAlive: true,
+  }),
+  TypeOrmModule.forFeature([AlbumEntity, PerformerEntity, TrackEntity ]),
+];
+/* archivo src/shared/testing-utils/typeorm-testing-config.ts*/
