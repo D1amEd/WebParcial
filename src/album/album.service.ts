@@ -48,7 +48,7 @@ export class AlbumService {
     return album;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string) {
     const album = await this.albumRepository.findOne({
       where: { id },
       relations: ['tracks'],
@@ -64,7 +64,7 @@ export class AlbumService {
         'El album no puede ser eliminado porque tiene tracks asociados',
         BusinessError.PRECONDITION_FAILED,
       );
-    } 
+    }
     await this.albumRepository.remove(album);
   }
 }
