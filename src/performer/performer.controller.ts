@@ -39,4 +39,5 @@ export class PerformerController {
   async findOne(@Param('id') id: string): Promise<PerformerEntity> {
     return await this.performerservice.findOne(id);
   }
+
 }
