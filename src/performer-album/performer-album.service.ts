@@ -16,13 +16,12 @@ export class PerformerAlbumService {
     @InjectRepository(AlbumEntity)
     private readonly albumRepository: Repository<AlbumEntity>,
   ) {}
-  async addAlbumToPerformer(
-    performerId: string,
+  async AddPerformerToAlbum(
     albumId: string,
-  ): Promise<PerformerEntity> {
+    performerId: string
+  ): Promise<AlbumEntity> {
     const performer = await this.performerRepository.findOne({
       where: { id: performerId },
-      relations: ['albums'],
     });
     if (!performer) {
       throw new BusinessLogicException(
@@ -32,6 +31,7 @@ export class PerformerAlbumService {
     }
     const album = await this.albumRepository.findOne({
       where: { id: albumId },
+      relations: ['performers'],
     });
     if (!album) {
       throw new BusinessLogicException(
@@ -39,13 +39,13 @@ export class PerformerAlbumService {
         BusinessError.NOT_FOUND,
       );
     }
-    if (performer.albums.length >= 3) {
+    if (album.performers.length >= 3) {
       throw new BusinessLogicException(
-        'El performer no puede tener mas de 3 albums',
+        'El album no puede tener mas de 3 performers',
         BusinessError.PARAMETER_REQUIRED,
       );
     }
-    performer.albums = [...performer.albums, album];
-    return await this.performerRepository.save(performer);
+    album.performers = [...album.performers, performer];
+    return await this.albumRepository.save(album);
   }
 }

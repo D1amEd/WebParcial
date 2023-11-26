@@ -6,7 +6,6 @@ import {
   HttpCode,
   Param,
   Post,
-  Put,
   UseInterceptors,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';

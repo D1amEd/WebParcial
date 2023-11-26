@@ -59,48 +59,49 @@ describe('PerformerAlbumService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should add an album to a performer', async () => {
-    const result = await service.addAlbumToPerformer(
-      performerList[0].id,
+  it('should add an performer to a Album', async () => {
+    const result = await service.AddPerformerToAlbum(
       albumList[0].id,
+      performerList[0].id,
     );
-    expect(result.albums.length).toEqual(1);
-    expect(result.albums[0].id).toEqual(albumList[0].id);
-    expect(result.albums[0].nombre).toEqual(albumList[0].nombre);
-    expect(result.albums[0].caratula).toEqual(albumList[0].caratula);
-    expect(result.albums[0].fechaLanzamiento).toEqual(
-      albumList[0].fechaLanzamiento,
+    expect(result).toBeDefined();
+    expect(result.performers.length).toBe(1);
+    expect(result.performers[0].id).toBe(performerList[0].id);
+    expect(result.performers[0].nombre).toBe(performerList[0].nombre);
+    expect(result.performers[0].imagen).toBe(performerList[0].imagen);
+    expect(result.performers[0].descripcion).toBe(
+      performerList[0].descripcion,
     );
-    expect(result.albums[0].descripcion).toEqual(albumList[0].descripcion);
-    const Album = await albumRepository.findOne({
-      where: { id: albumList[0].id },
-      relations: ['performers'],
-    });
-    expect(Album.performers.length).toEqual(1);
-    expect(Album.performers[0].id).toEqual(performerList[0].id);
+    let performer = await performerRepository.findOne(
+      {
+        where: { id: performerList[0].id },
+        relations: ['albums'],
+      },);
+    expect(performer.albums.length).toBe(1);
+    expect(performer.albums[0].id).toBe(albumList[0].id);
   });
 
   it('should throw an error when the performer does not exist', async () => {
     await expect(
-      service.addAlbumToPerformer('abcd-efgh-ijk', albumList[0].id),
+      service.AddPerformerToAlbum(albumList[0].id,'abcd-efgh-ijk'),
     ).rejects.toHaveProperty('message', 'El performer no existe');
   });
 
   it('should throw an error when the album does not exist', async () => {
     await expect(
-      service.addAlbumToPerformer(performerList[0].id, 'abcd-efgh-ijk'),
+      service.AddPerformerToAlbum('abcd-efgh-ijk',performerList[0].id),
     ).rejects.toHaveProperty('message', 'El album no existe');
   });
 
-  it('should throw an error when the performer has more than 3 albums', async () => {
-    await service.addAlbumToPerformer(performerList[0].id, albumList[0].id);
-    await service.addAlbumToPerformer(performerList[0].id, albumList[1].id);
-    await service.addAlbumToPerformer(performerList[0].id, albumList[2].id);
+  it('should throw an error when the album has more than 3 performers', async () => {
+    await service.AddPerformerToAlbum(albumList[0].id,performerList[0].id);
+    await service.AddPerformerToAlbum(albumList[0].id,performerList[1].id);
+    await service.AddPerformerToAlbum(albumList[0].id,performerList[2].id);
     await expect(
-      service.addAlbumToPerformer(performerList[0].id, albumList[3].id),
+      service.AddPerformerToAlbum(albumList[0].id,performerList[3].id),
     ).rejects.toHaveProperty(
       'message',
-      'El performer no puede tener mas de 3 albums',
+      'El album no puede tener mas de 3 performers',
     );
   });
 });
