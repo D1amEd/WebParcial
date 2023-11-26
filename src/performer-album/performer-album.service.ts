@@ -39,13 +39,13 @@ export class PerformerAlbumService {
         BusinessError.NOT_FOUND,
       );
     }
-    if (performer.albums.length > 3) {
+    if (performer.albums.length >= 3) {
       throw new BusinessLogicException(
         'El performer no puede tener mas de 3 albums',
         BusinessError.PARAMETER_REQUIRED,
       );
     }
-    album.performers = [...album.performers, performer];
+    performer.albums = [...performer.albums, album];
     return await this.performerRepository.save(performer);
   }
 }
