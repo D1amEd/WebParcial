@@ -1,0 +1,39 @@
+{
+	"id": "15ee7da7-8a17-41f8-869b-3a6602b54610",
+	"values": [
+		{
+			"key": "server",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "album_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "performer_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "track_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "invalid_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-11-27T02:59:39.346Z",
+	"_postman_exported_using": "Postman/10.20.3"
+}

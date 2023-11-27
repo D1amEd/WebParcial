@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "76655bb3-4f62-4f57-8d43-1bb23b7fb3c2",
+		"name": "Performer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23053656"
+	},
+	"item": [
+		{
+			"name": "Error Management",
+			"item": [
+				{
+					"name": "Create +100 character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"La descripcion no puede tener mas de 100 caracteres\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/performers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create +100 character",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/performers",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"performers"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 400,\r\n    \"message\": \"La descripcion no puede tener mas de 100 caracteres\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Find Non-Existing Performer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"El performer no existe\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/performers/{{invalid_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"performers",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Find Non-Existing Performer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/performers/{{invalid_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"performers",
+										"{{invalid_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El performer no existe\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"performer_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"cantante del genero urbano\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/performers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"performers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"cantante del genero urbano\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/performers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"cantante del genero urbano\",\r\n    \"id\": \"30812601-38b8-4b45-bad3-358b6c423ecf\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "FindOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/performers/{{performer_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"performers",
+						"{{performer_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindOne",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/performers/{{performer_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"performers",
+								"{{performer_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"30812601-38b8-4b45-bad3-358b6c423ecf\",\r\n    \"nombre\": \"Babuni\",\r\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n    \"descripcion\": \"cantante del genero urbano\",\r\n    \"albums\": [\r\n        {\r\n            \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\",\r\n            \"nombre\": \"My first Album\",\r\n            \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n            \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n            \"descripcion\": \"My first Album  ever!!\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "FindAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Number of Performers > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/performers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"performers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/performers",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"30812601-38b8-4b45-bad3-358b6c423ecf\",\r\n        \"nombre\": \"Babuni\",\r\n        \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n        \"descripcion\": \"cantante del genero urbano\",\r\n        \"albums\": [\r\n            {\r\n                \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\",\r\n                \"nombre\": \"My first Album\",\r\n                \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n                \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n                \"descripcion\": \"My first Album  ever!!\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"id\": \"ebf94076-2a6e-4e4d-affa-653de59e2dd8\",\r\n        \"nombre\": \"Babuni\",\r\n        \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n        \"descripcion\": \"cantante del genero urbano\",\r\n        \"albums\": []\r\n    }\r\n]"
+				}
+			]
+		}
+	]
+}

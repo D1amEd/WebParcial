@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "2c084b61-5fd8-44b0-af57-157c32aebf52",
+		"name": "Performer-Album",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23053656"
+	},
+	"item": [
+		{
+			"name": "addPerformerToAlbum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/albums/{{album_id}}/performers/{{performer_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"albums",
+						"{{album_id}}",
+						"performers",
+						"{{performer_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "addPerformerToAlbum",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/albums/{{album_id}}/performers/{{performer_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums",
+								"{{album_id}}",
+								"performers",
+								"{{performer_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\",\r\n    \"nombre\": \"My first Album\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n    \"descripcion\": \"My first Album  ever!!\",\r\n    \"performers\": [\r\n        {\r\n            \"id\": \"30812601-38b8-4b45-bad3-358b6c423ecf\",\r\n            \"nombre\": \"Babuni\",\r\n            \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n            \"descripcion\": \"cantante del genero urbano\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,497 @@
+{
+	"info": {
+		"_postman_id": "89e47eb1-973b-48d5-b8f4-d72e610450a2",
+		"name": "Album",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23053656"
+	},
+	"item": [
+		{
+			"name": "Error Management",
+			"item": [
+				{
+					"name": "Delete Invalid Album",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"El album no existe\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/albums/{{invalid_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Invalid Album",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/albums/{{invalid_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"albums",
+										"{{invalid_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El album no existe\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Empty Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message[0]).to.eql(\"nombre should not be empty\");\r",
+									"});\r",
+									"pm.test(\"Get expected error\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.error).to.eql(\"Bad Request\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"My first Album  ever!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/albums",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Empty Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"My first Album  ever!!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/albums",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": [\r\n        \"nombre should not be empty\"\r\n    ],\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Empty Description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message[0]).to.eql(\"descripcion should not be empty\");\r",
+									"});\r",
+									"pm.test(\"Get expected error\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.error).to.eql(\"Bad Request\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Albummm\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/albums",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Empty Description",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Albuum\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/albums",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": [\r\n        \"descripcion should not be empty\"\r\n    ],\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Find Non-Existing Album",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"El album no existe\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/albums/{{invalid_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Find Non-Existing Album",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/albums/{{invalid_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"albums",
+										"{{invalid_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El album no existe\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"album_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"My first Album\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"My first Album  ever!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/albums",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"My first Album\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24\",\r\n    \"descripcion\": \"My first Album  ever!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/albums",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"My first Album\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n    \"descripcion\": \"My first Album  ever!!\",\r\n    \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "FindAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Number of Tracks > ' + 0, function () {\r",
+							"   var data = pm.response.json() \r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/albums",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/albums",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\",\r\n        \"nombre\": \"My first Album\",\r\n        \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n        \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n        \"descripcion\": \"My first Album  ever!!\",\r\n        \"tracks\": [\r\n            {\r\n                \"id\": \"b3a0a20b-4f40-47fc-99be-39e990db488e\",\r\n                \"nombre\": \"Monaco\",\r\n                \"duracion\": 220\r\n            }\r\n        ],\r\n        \"performers\": [\r\n            {\r\n                \"id\": \"30812601-38b8-4b45-bad3-358b6c423ecf\",\r\n                \"nombre\": \"Babuni\",\r\n                \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/220px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg\",\r\n                \"descripcion\": \"cantante del genero urbano\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"id\": \"90523784-312a-448d-b6ff-a207aa239011\",\r\n        \"nombre\": \"My first Album\",\r\n        \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n        \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n        \"descripcion\": \"My first Album  ever!!\",\r\n        \"tracks\": [\r\n            {\r\n                \"id\": \"72a2110d-a683-403c-9079-04ba303b4e99\",\r\n                \"nombre\": \"Monaco\",\r\n                \"duracion\": 220\r\n            }\r\n        ],\r\n        \"performers\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "FindOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/albums/{{album_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"albums",
+						"{{album_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindOne",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/albums/{{album_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"albums",
+								"{{album_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"90523784-312a-448d-b6ff-a207aa239011\",\r\n    \"nombre\": \"My first Album\",\r\n    \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n    \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n    \"descripcion\": \"My first Album  ever!!\",\r\n    \"tracks\": [\r\n        {\r\n            \"id\": \"72a2110d-a683-403c-9079-04ba303b4e99\",\r\n            \"nombre\": \"Monaco\",\r\n            \"duracion\": 220\r\n        }\r\n    ],\r\n    \"performers\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/albums/{{album_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"albums",
+						"{{album_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

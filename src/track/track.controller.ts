@@ -19,7 +19,7 @@ import { TrackDto } from './track.dto/track.dto';
 export class TrackController {
   constructor(private readonly trackservice: TrackService) {}
 
-  @Post('ambums/:albumId')
+  @Post('albums/:albumId')
   async createTrack(
     @Param('albumId') albumId: string,
     @Body() track: TrackDto,

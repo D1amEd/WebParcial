@@ -20,6 +20,7 @@ export class AlbumController {
 
   @Post()
   async createAlbum(@Body() album: AlbumDto): Promise<AlbumEntity> {
+    album.fechaLanzamiento = stringToDate(album.fechaLanzamiento);
     const newAlbum: AlbumEntity = plainToInstance(AlbumEntity, album);
     return await this.albumservice.createAlbum(newAlbum);
   }
@@ -30,7 +31,7 @@ export class AlbumController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<AlbumEntity> {
+  async  findOne(@Param('id') id: string): Promise<AlbumEntity> {
     return await this.albumservice.findOne(id);
   }
 
@@ -40,3 +41,7 @@ export class AlbumController {
     return await this.albumservice.delete(id);
   }
 }
+const stringToDate = (dateString: string): Date => {
+  const [year, month, day] = dateString.split('-');
+  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+};

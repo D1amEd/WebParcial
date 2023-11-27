@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "6dc1aa5b-247c-419f-9226-a960ede8e498",
+		"name": "Track",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23053656"
+	},
+	"item": [
+		{
+			"name": "Error Management",
+			"item": [
+				{
+					"name": "Find Non-Existing Track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"El track no existe\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/tracks/{{invalid_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks",
+								"{{invalid_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Find Non-Existing Track",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/tracks/{{invalid_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"tracks",
+										"{{invalid_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El track no existe\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Track with Empty Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message[0]).to.eql(\"nombre should not be empty\");\r",
+									"});\r",
+									"pm.test(\"Get expected error\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.error).to.eql(\"Bad Request\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"\",\r\n    \"duracion\": 220\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/tracks/albums/{{album_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks",
+								"albums",
+								"{{album_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Track with Empty Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"\",\r\n    \"duracion\": 220\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/tracks/albums/{{album_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"tracks",
+										"albums",
+										"{{album_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": [\r\n        \"nombre should not be empty\"\r\n    ],\r\n    \"error\": \"Bad Request\",\r\n    \"statusCode\": 400\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Track with Negative Duration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"La duracion no puede ser negativa\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"New Track\",\r\n    \"duracion\": -12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/tracks/albums/{{album_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks",
+								"albums",
+								"{{album_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Track with Empty Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"New Albumm\",\r\n    \"duracion\": -220\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/tracks/albums/{{album_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"tracks",
+										"albums",
+										"{{album_id}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"statusCode\": 400,\r\n    \"message\": \"La duracion no puede ser negativa\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"track_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Monaco\",\r\n    \"duracion\": 220\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/tracks/albums/{{album_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"tracks",
+						"albums",
+						"{{album_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Monaco\",\r\n    \"duracion\": \"220\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/tracks/albums/{{album_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks",
+								"albums",
+								"{{album_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Monaco\",\r\n    \"duracion\": \"220\",\r\n    \"album\": {\r\n        \"id\": \"90523784-312a-448d-b6ff-a207aa239011\",\r\n        \"nombre\": \"My first Album\",\r\n        \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n        \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n        \"descripcion\": \"My first Album  ever!!\",\r\n        \"tracks\": []\r\n    },\r\n    \"id\": \"72a2110d-a683-403c-9079-04ba303b4e99\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "FindOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/tracks/{{track_id}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"tracks",
+						"{{track_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindOne",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/tracks/{{track_id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks",
+								"{{track_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"72a2110d-a683-403c-9079-04ba303b4e99\",\r\n    \"nombre\": \"Monaco\",\r\n    \"duracion\": 220,\r\n    \"album\": {\r\n        \"id\": \"90523784-312a-448d-b6ff-a207aa239011\",\r\n        \"nombre\": \"My first Album\",\r\n        \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n        \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n        \"descripcion\": \"My first Album  ever!!\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "FindAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Number of Tracks > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/tracks",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"tracks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FindAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/tracks",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"tracks"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"b3a0a20b-4f40-47fc-99be-39e990db488e\",\r\n        \"nombre\": \"Monaco\",\r\n        \"duracion\": 220,\r\n        \"album\": {\r\n            \"id\": \"9a0ddde3-2480-41e1-b2b1-685713e7fd6e\",\r\n            \"nombre\": \"My first Album\",\r\n            \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n            \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n            \"descripcion\": \"My first Album  ever!!\"\r\n        }\r\n    },\r\n    {\r\n        \"id\": \"72a2110d-a683-403c-9079-04ba303b4e99\",\r\n        \"nombre\": \"Monaco\",\r\n        \"duracion\": 220,\r\n        \"album\": {\r\n            \"id\": \"90523784-312a-448d-b6ff-a207aa239011\",\r\n            \"nombre\": \"My first Album\",\r\n            \"caratula\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Caratula_%C3%81lbum_Indomable.jpg/2048px-Caratula_%C3%81lbum_Indomable.jpg\",\r\n            \"fechaLanzamiento\": \"2023-11-24T05:00:00.000Z\",\r\n            \"descripcion\": \"My first Album  ever!!\"\r\n        }\r\n    }\r\n]"
+				}
+			]
+		}
+	]
+}
